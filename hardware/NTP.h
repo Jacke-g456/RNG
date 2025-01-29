@@ -33,6 +33,8 @@
 #include "sntp.h"
 #endif
 
+TaskHandle_t xNTPHandle;
+
 
 // HELP FULL WEBPAGES
 // https://www.tutorialspoint.com/c_standard_library/c_function_strftime.htm

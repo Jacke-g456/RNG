@@ -10,6 +10,7 @@
 #endif
 
 #include <PubSubClient.h>
+#include <WiFi.h> 
 
 // NOTES:
 // https://pubsubclient.knolleary.net/api
@@ -192,7 +193,7 @@ void initialize(void){
 
   Serial.println("\n\n***** Wi-Fi CONNECTED! *****\n\n");
    
-  initMQTT();          // INIT MQTT  
+ // initMQTT();          // INIT MQTT  
   // vUpdateFunction();
   
 }

@@ -27,11 +27,11 @@
 #endif
 
 #ifndef NTP_H
-#include <NTP.h>    // This might be missing
+#include "NTP.h"    // This might be missing
 #endif
 
 #ifndef MQTT_H
-#include <mqtt.h>   // This might be missing
+#include "mqtt.h"  // This might be missing
 #endif
 
 // DEFINE VARIABLES
