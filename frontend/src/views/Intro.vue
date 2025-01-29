@@ -78,7 +78,7 @@ onMounted(()=>{
         // Subscribe to each topic 
         Mqtt.subscribe("topic1"); 
         Mqtt.subscribe("topic2"); 
-    }3000);
+    },3000);
 });
 
 
