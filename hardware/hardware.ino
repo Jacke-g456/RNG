@@ -26,13 +26,7 @@
 #include <ArduinoJson.h>
 #endif
 
-#ifndef NTP_H
-#include "NTP.h"    // This might be missing
-#endif
 
-#ifndef MQTT_H
-#include "mqtt.h"  // This might be missing
-#endif
 
 // DEFINE VARIABLES
 #define ARDUINOJSON_USE_DOUBLE      1 
@@ -59,7 +53,7 @@
 // MQTT CLIENT CONFIG  
 static const char* pubtopic       = "620165845";                    // Add your ID number here
 static const char* subtopic[]     = {"620165845_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
-static const char* mqtt_server    = "127.0.0.1";                // Broker IP address or Domain name as a String 
+static const char* mqtt_server    = "www.yanacreations.com";                // Broker IP address or Domain name as a String 
 static uint16_t mqtt_port         = 1883;
 
 // WIFI CREDENTIALS
@@ -104,10 +98,11 @@ void toggleLED(int8_t LED);
 #endif
 
 // Temporary Variables
-uint8_t number = 0;
+uint8_t number = 8;
 
 
 void setup() {
+  randomSeed(analogRead(22));
   Serial.begin(115200);  // INIT SERIAL  
 
   // CONFIGURE THE ARDUINO PINS OF THE 7SEG AS OUTPUT
@@ -126,13 +121,14 @@ void setup() {
 
   initialize();           // INIT WIFI, MQTT & NTP 
   vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
-
+  Display(number);
 }
   
 
 
 void loop() {
     // put your main code here, to run repeatedly: 
+    
     
 }
 
@@ -170,6 +166,11 @@ void vUpdate( void * pvParameters )  {
 
           // Add key:value pairs to JSon object
           doc["id"]         = "620165845";
+          doc["timestamp"]  = getTimeStamp();
+   
+    doc["number"] = number;
+    doc["ledA"] = getLEDStatus(LED_A);
+    doc["ledB"] = getLEDStatus(LED_B) ;
 
           serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array
 
@@ -247,7 +248,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     doc["ledB"] = getLEDStatus(LED_B) ;
 
     serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array  
-    publish("topic", message);    // Publish to a topic that only the Frontend subscribes to.
+    publish("620165845", message);    // Publish to a topic that only the Frontend subscribes to.
           
   } 
 

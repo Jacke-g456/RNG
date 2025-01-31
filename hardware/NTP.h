@@ -33,7 +33,7 @@
 #include "sntp.h"
 #endif
 
-TaskHandle_t xNTPHandle;
+
 
 
 // HELP FULL WEBPAGES

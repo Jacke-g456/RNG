@@ -42,7 +42,10 @@
 // IMPORTS
 import { ref,reactive,watch ,onMounted,onBeforeUnmount,computed } from "vue";  
 import { useRoute ,useRouter } from "vue-router";
+import { useAppStore } from "@/store/appStore"; 
+
 import Chart from 'chart.js/auto'; 
+const AppStore    = useAppStore(); 
  
  
 // VARIABLES
@@ -131,6 +134,8 @@ const updateLEDCount = async(name)=>{
 
 
 
+console.log("AppStore:", AppStore);
+console.log("Available methods in AppStore:", Object.keys(AppStore));
 
 
 </script>

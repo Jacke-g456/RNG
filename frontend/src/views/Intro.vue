@@ -76,8 +76,8 @@ onMounted(()=>{
 
     setTimeout(()=>{
         // Subscribe to each topic 
-        Mqtt.subscribe("topic1"); 
-        Mqtt.subscribe("topic2"); 
+        Mqtt.subscribe("620165845"); 
+        
     },3000);
 });
 
@@ -90,7 +90,7 @@ onBeforeUnmount(()=>{
 
 const toggle = (name) => { 
 let message = JSON.stringify({"type":"toggle","device": name}); // Create message and convert to a json string 
-Mqtt.publish("topic",message);  // Publish message to appropriate topic  
+Mqtt.publish("620165845_sub",message);  // Publish message to appropriate topic  
 } 
 </script>
 
